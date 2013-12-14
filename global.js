@@ -1,3 +1,5 @@
+//dunno what goes here really
+
 function newActivity(name) {
 	var activity_name = name;
 	var icon_source;
