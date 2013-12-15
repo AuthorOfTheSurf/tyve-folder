@@ -1,1 +1,30 @@
-//apparently I need this thing.
+{
+  "name": "tyve-folder",
+  "version": "0.0.0",
+  "description": "Tyve App",
+  "main": "global.js",
+  "dependencies": {
+    "node": "~0.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AuthorOfTheSurf/tyve-folder.git"
+  },
+  "keywords": [
+    "tyve",
+    "motivational",
+    "system",
+    "self-improvement",
+    "dedication",
+    "improvement"
+  ],
+  "author": "Zane Q Kansil",
+  "license": "Intellectual Copyright",
+  "bugs": {
+    "url": "https://github.com/AuthorOfTheSurf/tyve-folder/issues"
+  }
+}

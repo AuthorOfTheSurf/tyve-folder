@@ -6,4 +6,4 @@ Extras:
 *	I want to have the suggestions for activities looking nice and being positive and well-chosen, useful to the users.
 *	Adding images should be fluid and easy.
 *	Reason's why 20 is the important milestone. More specifically, this app is inspired by an article that I read, it is, in a way, intended to teach the key idea of the article--that 20 hours of practice can make you better than 99% of people--whilst also providing a nice app for which to track such a period of time.
-*	Should have a motivational-feeling ui. I am thinking light yellow with a well-chosen blue.
+*	Should have a motivational-feeling ui. I am thinking light yellow with a well-chosen blue or beigy white.
