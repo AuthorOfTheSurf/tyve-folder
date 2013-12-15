@@ -4,7 +4,8 @@
   "description": "Tyve App",
   "main": "global.js",
   "dependencies": {
-    "node": "~0.0.0"
+    "node": "~0.0.0",
+    "express": "3.x"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,7 +21,8 @@
     "system",
     "self-improvement",
     "dedication",
-    "improvement"
+    "improvement",
+    "20"
   ],
   "author": "Zane Q Kansil",
   "license": "Intellectual Copyright",
