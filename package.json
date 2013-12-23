@@ -6,8 +6,7 @@
   "dependencies": {
     "node": "~0.0.0",
     "express": "3.x",
-    "mongojs": "~0.9.10",
-    "mongoose": "~3.8.2",
+    "mongoose": "~3.8.3",
     "less-middleware": "~0.1.14"
   },
   "devDependencies": {},

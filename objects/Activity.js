@@ -1,9 +1,12 @@
+"use strict";
+/*global user_name:true, date_joined:true, real_name:true, activities:true */
+/*jslint plusplus: true */
+
 exports = module.exports = function(name, icon_source) {
 	var activity_name = name;
-	var icon_source;
-	var cumulative_interval;
-	var current_interval;
-	var clocked = false;
+	    icon_source = icon_source;
+	    clocked = false;
+	var cumulative_interval, current_interval;
 
 	return {
 		set_name: function(name) {

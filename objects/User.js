@@ -3,10 +3,10 @@
 /*jslint plusplus: true */
 
 exports = module.exports = function (user_name, date_joined, real_name) {
-    var user_name = user_name;
-    var date_joined = date_joined;
-    var real_name = real_name; 
-    var activities = [];
+    var user_name = user_name,
+        date_joined = date_joined,
+        real_name = real_name,
+        activities = [];
 
     return {
         check_activity_exists: function (name) {

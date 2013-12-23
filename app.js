@@ -1,7 +1,7 @@
 var http = require('http');
 var express = require('express');
 
-var databaseUrl = "tyvedb";
+var databaseUrl = "localhost:27017/db";
 var collections = ["users", "statistics"];
 var db = require('mongojs').connect(databaseUrl, collections);
 
