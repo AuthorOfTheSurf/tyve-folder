@@ -5,7 +5,6 @@
   "main": "app.js",
   "dependencies": {
     "node": "~0.0.0",
-    "express": "3.x",
     "mongoose": "~3.8.3",
     "less-middleware": "~0.1.14"
   },

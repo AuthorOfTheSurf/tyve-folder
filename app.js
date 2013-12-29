@@ -1,8 +1,10 @@
 var http = require('http');
-var express = require('express');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/tyvedb');
+mongoose.connection.on('error', function (req, res) {
+  //dunno what to put here right now
+});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -35,12 +37,6 @@ db.once('open', function callback () {
 
 var User = (require('./objects/User'));
 var Activity = (require('./objects/Activity'));
-
-var app = express();
-
-app.get('/hello.txt', function (req, res) {
-  res.send('Hello World');
-});
 
 app.listen(3000);
 console.log('Listening on port 3000');
