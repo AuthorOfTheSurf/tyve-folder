@@ -1,33 +1,9 @@
 {
-  "name": "tyve-folder",
-  "version": "0.0.0",
-  "description": "Tyve App",
-  "main": "app.js",
+  "name": "first-express-app",
+  "description": "a fine-ass app",
+  "version": "0.0.1",
   "dependencies": {
-    "node": "~0.0.0",
-    "mongoose": "~3.8.3",
-    "less-middleware": "~0.1.14"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AuthorOfTheSurf/tyve-folder.git"
-  },
-  "keywords": [
-    "tyve",
-    "motivational",
-    "system",
-    "self-improvement",
-    "dedication",
-    "improvement",
-    "20"
-  ],
-  "author": "Zane Q Kansil",
-  "license": "Intellectual Copyright",
-  "bugs": {
-    "url": "https://github.com/AuthorOfTheSurf/tyve-folder/issues"
+    "express": "3.x",
+    "mongoose": "^3.8.11"
   }
 }

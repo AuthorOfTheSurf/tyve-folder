@@ -1,42 +1,93 @@
-var http = require('http');
+var application_root = __dirname
+var express = require('express')
+var path = require('path')
+var db = require('./app/mongo-settings')
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/tyvedb');
-mongoose.connection.on('error', function (req, res) {
-  //dunno what to put here right now
-});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  var kittySchema = mongoose.Schema({
-    name: String
-  });
-  kittySchema.methods.speak = function () {
-    var greeting = this.name
-      ? "Meow name is " + this.name
-      : "I don't have a name"
-    console.log(greeting);
-  }
-  var Kitten = mongoose.model('Kitten', kittySchema);
-  var silence = new Kitten({name: 'Silence'});
-  console.log(silence.name)
-  var fluffy = new Kitten({ name: 'fluffy' });
-  fluffy.save(function (err, fluffy) {
-    if (err) {
-      console.log('There was an error saving fluffy');
+var app = express()
+
+app.configure(function () {
+  app.use(express.methodOverride())
+  app.use(express.json())
+  app.use(express.urlencoded())
+  app.use(app.router)
+  app.use(express.static(__dirname + '/public'))
+  app.use(express.errorHandler({
+    dumpExceptions: true,
+    showStack: true
+  }))
+  app.set('view engine', 'jade')
+})
+
+app.get('/api', function (req, res) {
+  res.send('Tyve API is running')
+})
+
+/* CRUD API */
+app.get('/api/products', function (req, res) {
+  return db.ProductModel.find(function (err, products) {
+    if (!err) {
+      return res.send(products)
+    } else {
+      return console.log(err)
     }
-  });
-  Kitten.find(function (err, kittens) {
-    if (err) {
-      console.log('There was an error finding Kittens');
+  })
+})
+
+app.post('/api/products', function (req, res) {
+  var product = new db.ProductModel({
+    title: req.body.title,
+    description: req.body.description,
+    style: req.body.style,
+  })
+  product.save(function (err) {
+    if (!err) {
+      console.log('POST:')
+      console.log(req.body)
+      return console.log("created")
+    } else {
+      return console.log(err)
     }
-    console.log(kittens)
-  });
-});
+  })
+  return res.send(product)
+})
 
+app.get('/api/products/:id', function (req, res) {
+  return db.ProductModel.findById(req.params.id, function (err, product) {
+    if (!err) {
+      return res.send(product)
+    } else {
+      return console.log(err)
+    }
+  })
+})
 
-var User = (require('./objects/User'));
-var Activity = (require('./objects/Activity'));
+app.put('/api/products/:id', function (req, res) {
+  return db.ProductModel.findById(req.params.id, function (err, product) {
+    product.title = req.body.title
+    product.description = req.body.description
+    product.style = req.body.style
+    return product.save(function (err) {
+      if (!err) {
+        console.log("updated")
+      } else {
+        console.log(err)
+      }
+      return res.send(product)
+    })
+  })
+})
 
-app.listen(3000);
-console.log('Listening on port 3000');
+app.delete('/api/products/:id', function (req, res) {
+  return db.ProductModel.findById(req.params.id, function (err, product) {
+    return product.remove(function (err) {
+      if (!err) {
+        console.log("removed")
+        return res.send('')
+      } else {
+        console.log(err)
+      }
+    })
+  })
+})
+
+app.listen(3000)
