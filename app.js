@@ -1,4 +1,3 @@
-var application_root = __dirname
 var express = require('express')
 var path = require('path')
 var db = require('./app/mongo-settings')
@@ -23,6 +22,7 @@ app.get('/api', function (req, res) {
 })
 
 /* CRUD API */
+/* The below API is out of date and for example purposes */
 app.get('/api/products', function (req, res) {
   return db.ProductModel.find(function (err, products) {
     if (!err) {

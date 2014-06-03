@@ -1,31 +1,72 @@
+/* Connectivity */
+
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/tyve_database')
 
+/* Schema inclusion and definitions */
+
 var Schema = mongoose.Schema
 
-var Product = new Schema({  
-  title: {
+var User = new Schema({
+  username: {
     type: String,
     required: true
-  },  
-  description: {
+  },
+  activities: {
+    type: [Activity],
+    default: []
+  },
+  stats: {
+    type: Statistics,
+    required: true
+  }
+})
+
+var Activity = new Schema({
+  name: {
     type: String,
     required: true
-  },  
-  style: {
-    type: String,
-    unique: true
-  },  
-  modified: {
+  },
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  score: {
+    type: Number,
+    default: 0
+  },
+  maxScore: {
+    type: Number,
+    default: 20
+  },
+  lastProgress: {
     type: Date,
     default: Date.now
   }
-});
+})
+
+var Statistics = new Schema({
+  lastActive: {
+    type: Date,
+    default: Date.now
+  },
+  totalScore: {
+    type: Number,
+    default: 0
+  },
+  /* Stringy representation of all user activities */
+  involvement: {
+    type: [String],
+    default: []
+  }
+})
+
+/* Model instantiation and exporting */
 
 var catalog = {}
 
-/* Creates a product model, as well as a place to
-   store them on the db */
-catalog.ProductModel = mongoose.model('Product', Product)
+catalog.Activity = mongoose.model('Activity', Activity)
+catalog.User = mongoose.model('User', User)
+catalog.Statistics = mongoose.model('Statistics', Statistics)
 
 module.exports = catalog
