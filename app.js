@@ -3,9 +3,10 @@ var path = require('path')
 var db = require('./app/mongo-settings')
 
 var app = express()
+var methodOverride = require('method-override')
 
 app.configure(function () {
-  app.use(express.methodOverride())
+  app.use(methodOverride('X-HTTP-Method-Override'))
   app.use(express.json())
   app.use(express.urlencoded())
   app.use(app.router)
@@ -17,14 +18,14 @@ app.configure(function () {
   app.set('view engine', 'jade')
 })
 
-app.get('/api', function (req, res) {
-  res.send('Tyve API is running')
-})
-
 /* CRUD API */
 
 app.get('/', function (req, res) {
   res.send('Tyve homepage 0.1')
+})
+
+app.get('/api', function (req, res) {
+  res.send('Tyve API is running')
 })
 
 app.get('/api/users', function (req, res) {
