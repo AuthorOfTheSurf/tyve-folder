@@ -22,72 +22,35 @@ app.get('/api', function (req, res) {
 })
 
 /* CRUD API */
-/* The below API is out of date and for example purposes */
-app.get('/api/products', function (req, res) {
-  return db.ProductModel.find(function (err, products) {
+
+app.get('/', function (req, res) {
+  res.send('Tyve homepage 0.1')
+})
+
+app.get('/api/users', function (req, res) {
+  return db.User.find(function (err, users) {
     if (!err) {
-      return res.send(products)
+      return res.send(users)
     } else {
       return console.log(err)
     }
   })
 })
 
-app.post('/api/products', function (req, res) {
-  var product = new db.ProductModel({
-    title: req.body.title,
-    description: req.body.description,
-    style: req.body.style,
+app.post('/api/users', function (req, res) {
+  var newUser = new db.User({
+    username: req.body.username,
+    activities: new db.Activity({}),
+    stats: new db.Statistics({}),
   })
-  product.save(function (err) {
+  newUser.save(function (err) {
     if (!err) {
-      console.log('POST:')
-      console.log(req.body)
-      return console.log("created")
+      return console.log('POST: new user ' + req.body.username)
     } else {
       return console.log(err)
     }
   })
-  return res.send(product)
-})
-
-app.get('/api/products/:id', function (req, res) {
-  return db.ProductModel.findById(req.params.id, function (err, product) {
-    if (!err) {
-      return res.send(product)
-    } else {
-      return console.log(err)
-    }
-  })
-})
-
-app.put('/api/products/:id', function (req, res) {
-  return db.ProductModel.findById(req.params.id, function (err, product) {
-    product.title = req.body.title
-    product.description = req.body.description
-    product.style = req.body.style
-    return product.save(function (err) {
-      if (!err) {
-        console.log("updated")
-      } else {
-        console.log(err)
-      }
-      return res.send(product)
-    })
-  })
-})
-
-app.delete('/api/products/:id', function (req, res) {
-  return db.ProductModel.findById(req.params.id, function (err, product) {
-    return product.remove(function (err) {
-      if (!err) {
-        console.log("removed")
-        return res.send('')
-      } else {
-        console.log(err)
-      }
-    })
-  })
+  return res.send(newUser)
 })
 
 app.listen(3000)
