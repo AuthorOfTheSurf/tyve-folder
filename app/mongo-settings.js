@@ -7,25 +7,10 @@ mongoose.connect('mongodb://localhost/tyve_database')
 
 var Schema = mongoose.Schema
 
-var Statistics = new Schema({
-  lastActive: {
-    type: Date,
-    default: Date.now
-  },
-  totalScore: {
-    type: Number,
-    default: 0
-  },
-  /* Stringy representation of all user activities */
-  involvement: {
-    type: [String],
-    default: []
-  }
-})
-
 var User = new Schema({
   username: {
     type: String,
+    unique: true,
     required: true
   },
   activities: {
@@ -61,7 +46,21 @@ var Activity = new Schema({
   }
 })
 
-
+var Statistics = new Schema({
+  lastActive: {
+    type: Date,
+    default: Date.now
+  },
+  totalScore: {
+    type: Number,
+    default: 0
+  },
+  /* Stringy representation of all user activities */
+  involvement: {
+    type: [String],
+    default: []
+  }
+})
 
 /* Model instantiation and exporting */
 

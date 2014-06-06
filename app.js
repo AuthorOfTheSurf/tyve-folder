@@ -41,8 +41,8 @@ app.get('/api/users', function (req, res) {
 app.post('/api/users', function (req, res) {
   var newUser = new db.User({
     username: req.body.username,
-    activities: new db.Activity({}),
-    stats: new db.Statistics({}),
+    activities: [],
+    stats: new db.Statistics({})
   })
   newUser.save(function (err) {
     if (!err) {
