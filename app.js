@@ -1,6 +1,6 @@
 var express = require('express')
 var path = require('path')
-var db = require('./app/mongo-settings')
+var db = require('./app/tyve-db-services')
 
 var app = express()
 var methodOverride = require('method-override')
