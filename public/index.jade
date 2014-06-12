@@ -6,14 +6,16 @@ head
   title Tyve
 body
   section
-    h1 A form for posting new products
-    form(method="post", action="/api/products")
-      input(type="text", name="title", placeholder="title")
-      input(type="text", name="description", placeholder="description")
-      input(type="text", name="style", placeholder="style")
-      input(type="submit")
+    h1 Login testing with Passport
+    form(action="/login", method="post")
+    div
+      label Username
+      input(type="text", name="username")
+    div
+      label Password
+      input(type="password", name="password")
+    div
+      input(type="submit", value="Log In")
     h2 Commands
-    p.
-      /products<br>
-      /products/:id
+  
   script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js")
