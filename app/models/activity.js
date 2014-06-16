@@ -27,4 +27,15 @@ var activitySchema = mongoose.Schema({
   }
 });
 
+userSchema.statics.constructNewActivity = function (name) {
+  var newActivity = new this({ 'name': name }).save(function (err) {
+    if (err) {
+      throw err;
+    } else {
+      return done(null, newActivity);
+    }
+  });
+};
+
+
 module.exports = mongoose.model('Activity', activitySchema);

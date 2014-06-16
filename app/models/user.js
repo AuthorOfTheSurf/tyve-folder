@@ -23,8 +23,9 @@ var userSchema = mongoose.Schema({
 
   auth: {
     local: {
-      email    : String,
-      password : String
+      password : { 
+        type     : String,
+        required : true
     },
 
     facebook: {
@@ -50,12 +51,26 @@ var userSchema = mongoose.Schema({
   }
 });
 
-userSchema.methods.generateHash = function (password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
+var generateHash = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 }
 
-userSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.auth.local.password)
+userSchema.method.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.auth.local.password);
 }
 
-module.exports = mongoose.model('User', userSchema)
+userSchema.statics.constructNewUser = function (username, password) {
+  var data = {};
+  data.username = username;
+  data.auth.local.password = generateHash(password);
+  data.stats = new Statistics({});
+  var newUser = new this(data).save(function (err) {
+    if (err) {
+      throw err;
+    } else {
+      return done(null, newUser);
+    }
+  });
+};
+
+module.exports = mongoose.model('User', userSchema);
