@@ -1,12 +1,18 @@
 {
   "name": "first-express-app",
-  "description": "a fine-ass app",
-  "version": "0.0.1",
+  "main": "server.js",
+  "description": "The Tyve Accomplishment app",
+  "version": "0.0.2",
   "dependencies": {
-    "express": "3.x",
-    "method-override": "^2.0.2",
-    "mongoose": "^3.8.11",
-    "passport-local": "~1.0.0",
-    "passport": "~0.2.0"
+    "express": "~3.4.4",
+    "ejs": "~0.8.5",
+    "mongoose": "~3.8.1",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6",
+    "passport-facebook": "~1.0.2",
+    "passport-twitter": "~1.0.2",
+    "passport-google-oauth": "~0.1.5",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "latest"
   }
 }
