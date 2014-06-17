@@ -1,21 +1,24 @@
 doctype html
-
-html(lang='en')
+html
 head
-  meta(charset="utf-8")
-  title Tyve
+  titleNode Authenticationtitle
+  link rel="stylesheet" href="netdna.bootstrapcdn.combootstrap3.0.2cssbootstrap.min.css" !-- load bootstrap css --
+  link rel="stylesheet" href="netdna.bootstrapcdn.comfont-awesome4.0.3cssfont-awesome.min.css" !-- load fontawesome --
+  style
+    body {
+      padding-top: 80px;
+    }
+  style
+head
 body
-  section
-    h1 Login testing with Passport
-    form(action="/login", method="post")
-    div
-      label Username
-      input(type="text", name="username")
-    div
-      label Password
-      input(type="password", name="password")
-    div
-      input(type="submit", value="Log In")
-    h2 Commands
-  
+div class="container"
+
+  div class="jumbotron text-center"
+    h1span class="fa fa-lock"span Node Authenticationh1
+
+    pLogin or Register with:p
+
+    a href="login" class="btn btn-default"span class="fa fa-user" Local Login
+    a href="signup" class="btn btn-default"span class="fa fa-user" Local Signup
+
   script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js")
