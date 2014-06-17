@@ -1,9 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose   = require('mongoose');
+
+var User       = require('./user');
 
 var activitySchema = mongoose.Schema({
   name: {
     type     : String,
-    required : true
+    required : true,
+    match    : ['/\w{3}\w*/', 'Activity names must be at least 3 characters long.']
   },
 
   created: {
@@ -27,7 +30,7 @@ var activitySchema = mongoose.Schema({
   }
 });
 
-userSchema.statics.constructNewActivity = function (name) {
+activitySchema.statics.constructNewActivity = function (name) {
   var newActivity = new this({ 'name': name }).save(function (err) {
     if (err) {
       throw err;

@@ -1,4 +1,6 @@
-var statisticsSchema = new Schema({
+var mongoose = require('mongoose');
+
+var statisticsSchema = new mongoose.Schema({
   lastActive: {
     type    : Date,
     default : Date.now

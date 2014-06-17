@@ -2,13 +2,14 @@ var mongoose   = require('mongoose');
 var bcrypt     = require('bcrypt-nodejs');
 
 var Activity   = require('./activity');
-var Statistics = require('./statistics')
+var Statistics = require('./statistics');
 
 var userSchema = mongoose.Schema({
   username: {
     type     : String,
     unique   : true,
-    required : true
+    required : true,
+    match    : ['/\w{4}\w*/', 'Usernames must be at least 4 characters long.']
   },
 
   activities: {
@@ -25,7 +26,9 @@ var userSchema = mongoose.Schema({
     local: {
       password : { 
         type     : String,
-        required : true
+        required : true,
+        match    : ['/\w{4}\w*/', 'Passwords must be at least 12 characters long.']
+      }
     },
 
     facebook: {
