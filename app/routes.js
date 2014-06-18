@@ -48,30 +48,3 @@ function isLoggedIn (req, res, next) {
     res.redirect('/')
   }
 }
-
-// app.get('/api/users', function (req, res) {
-//   return db.User.find(function (err, users) {
-//     if (!err) {
-//       return res.send(users)
-//     } else {
-//       return console.log(err)
-//     }
-//   })
-// })
-
-// app.post('/api/users', function (req, res) {
-//   var newUser = new db.User({
-//     username: req.body.username,
-//     activities: [],
-//     stats: new db.Statistics({})
-//   })
-//   newUser.save(function (err) {
-//     if (!err) {
-//       return console.log('POST: new user ' + req.body.username)
-//     } else {
-//       return console.log(err)
-//     }
-//   })
-//   return res.send(newUser)
-// })
-
