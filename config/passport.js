@@ -13,7 +13,12 @@ module.exports = function (passport) {
     });
   });
 
-  passport.use('local-signup', new LocalStrategy({
+  passport.use('local-signup', signupStrategy);
+  passport.use('local-login', loginStrategy);
+
+};
+
+var signupStrategy = new LocalStrategy({
       passReqToCallback: true
     },
     function (req, username, password, done) {
@@ -31,12 +36,13 @@ module.exports = function (passport) {
           }
         });
       });
-    }));
+    }
+);
 
-  passport.use('local-login', new LocalStrategy({
+var loginStrategy = new LocalStrategy({
       passReqToCallback: true
     },
-    function(req, username, password, done) {
+    function (req, username, password, done) {
       User.findOne({ 'username': username }, function (err, user) {
         if (err) {
           return done(err);
@@ -48,6 +54,5 @@ module.exports = function (passport) {
           return done(null, user);
         }
       });
-    }));
-
-};
+    }
+);
