@@ -1,43 +1,37 @@
-!doctype html
+doctype html
 html
 head
   title Node Authentication
-  link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
-  link(rel="stylesheet", href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+  link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
+  link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css")
   style.
-    body        { padding-top:80px; }
-head
+    body {
+      padding-top:80px;
+    }
+
 body
   div.container
     div.col-sm-6.col-sm-offset-3
       h1
         span.fa.fa-sign-in Login
-      - if (message.length > 0)
-        div.alert.alert-danger
-          = message 
+      - if (messages)
+        div.alert.alert-danger= messages
+      form(action="/login", method="post")
+        div.form-group
+          label Email
+          input(type="text", class="form-control", name="email")
+        div.form-group
+          label Password
+          input(type="password", class="form-control", name="password")
+        button(type="submit").btn.btn-warning.btn-lg Login
       
+      hr
 
-  !-- LOGIN FORM --
-  form action="login" method="post"
-    div class="form-group"
-      labelEmaillabel
-      input type="text" class="form-control" name="email"
-    div
-    div class="form-group"
-      labelPasswordlabel
-      input type="password" class="form-control" name="password"
-    div
+      p
+      | Need an account? 
+      a(href="/signup") Signup
 
-    button type="submit" class="btn btn-warning btn-lg"Loginbutton
-  form
-
-  hr
-
-  pNeed an account? a href="signup"Signupap
-  pOr go a href=""homea.p
-
-div
-
-div
-body
-html
+      p
+      | Or go 
+      a(href="/") home
+      | .
