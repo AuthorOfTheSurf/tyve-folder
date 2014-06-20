@@ -14,8 +14,9 @@ body
     div.col-sm-6.col-sm-offset-3
       h1
         span.fa.fa-sign-in Login
-      - if (messages)
-        div.alert.alert-danger= messages
+      if messages
+        div.alert.alert-danger
+        | =messages
       form(action="/login", method="post")
         div.form-group
           label Email
