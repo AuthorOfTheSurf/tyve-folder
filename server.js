@@ -1,9 +1,10 @@
-var express  = require('express')
-var app      = express()
-var port     = (process.env.PORT || 3000)
+var express = require('express')
+var app = express()
+var port = process.env.PORT || 8080
 var mongoose = require('mongoose')
 var passport = require('passport')
-var flash    = require('connect-flash')
+var flash = require('connect-flash')
+
 var dbconfig = require('./config/database')
 
 mongoose.connect(dbconfig.url)
@@ -15,18 +16,16 @@ app.configure(function () {
   app.use(express.cookieParser())
   app.use(express.json())
   app.use(express.urlencoded())
-  //app.use(express.multipart())
 
-  app.set('views', __dirname + '/views')
-  app.set('view engine', 'jade')
+  app.set('view engine', 'ejs')
 
-  app.use(express.session({ secret: 'GrimondsAreForever' }))
+  app.use(express.session({ secret: '123456' }))
   app.use(passport.initialize())
   app.use(passport.session())
   app.use(flash())
 })
 
-require('./app/routes')(app, passport)
+require('./app/routes.js')(app, passport)
 
 app.listen(port)
 console.log('Tyve app started on port ' + port)

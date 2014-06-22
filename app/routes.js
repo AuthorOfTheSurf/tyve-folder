@@ -1,45 +1,45 @@
 module.exports = function (app, passport) {
 
   app.get('/', function (req, res) {
-    res.render('index.jade');
-  });
+    res.render('index.ejs')
+  })
 
   app.get('/login', function (req, res) {
-    res.render('login.jade', {
-      message: req.flash('loginMessage')
-    });
-  });
+    res.render('login.ejs', { message: req.flash('loginMessage') })
+  })
 
   app.post('/login', passport.authenticate('local-login', {
     successRedirect: '/profile',
     failureRedirect: '/login',
     failureFlash: true
-  }));
+  }))
 
   app.get('/signup', function (req, res) {
-    res.render('signup.jade', {
-      message: req.flash('signupMessage')
-    });
-  });
+    res.render('signup.ejs', { message: req.flash('signupMessage') })
+  })
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/profile',
     failureRedirect: '/signup',
     failureFlash: true
-  }));
+  }))
 
-  app.get('/profile', isLoggedIn, function (req, res) {
-    res.render('profile.jade', {
+  app.get('/profile', function (req, res) {
+    res.redirect('/profile/' + req.user.username)
+  })
+
+  app.get('/profile/:username', isLoggedIn, function (req, res) {
+    res.render('profile.ejs', {
       user: req.user
-    });
-  });
+    })
+  })
 
   app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-  });
+    req.logout()
+    res.redirect('/')
+  })
 
-};
+}
 
 function isLoggedIn (req, res, next) {
   if (req.isAuthenticated()) {

@@ -21,7 +21,7 @@ var activitySchema = mongoose.Schema({
 
   maxScore: {
     type    : Number,
-    default : 20
+    default : 11
   },
 
   lastProgress: {
@@ -29,16 +29,5 @@ var activitySchema = mongoose.Schema({
     default : Date.now
   }
 });
-
-activitySchema.statics.constructNewActivity = function (name) {
-  var newActivity = new this({ 'name': name }).save(function (err) {
-    if (err) {
-      throw err;
-    } else {
-      return done(null, newActivity);
-    }
-  });
-};
-
 
 module.exports = mongoose.model('Activity', activitySchema);
