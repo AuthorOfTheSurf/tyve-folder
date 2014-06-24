@@ -53,11 +53,11 @@ userSchema.methods.addActivity = function (name) {
     name: name
   })
   this.activities.push(newActivity)
-  this.save(function (err) {
+  this.save(function (err, user) {
     if (err) {
       console.log('unexpected error')
     } else {
-      console.log('Activity added successfully. I think')
+      console.log('Added activity \'' + name + '\' to user ' + user.username)
     }
   })
 }

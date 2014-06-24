@@ -53,11 +53,8 @@ module.exports = function (app, passport) {
    */
 
   app.post('/profile/activity', isLoggedIn, function (req, res) {
-    console.log('POST, new activity')
     User.findById(req.session.passport.user, function (err, user) {
-      console.log('found ' + user.username + ' by id!')
       user.addActivity(req.body.activityName)
-      console.log('activity list: ' + user.activities)
     })
   })
 
