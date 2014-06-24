@@ -1,3 +1,5 @@
+var User = require('./models/user')
+
 module.exports = function (app, passport) {
 
   app.get('/', function (req, res) {
@@ -37,6 +39,26 @@ module.exports = function (app, passport) {
   app.get('/logout', function (req, res) {
     req.logout()
     res.redirect('/')
+  })
+
+  app.get('/zero', function (req, res) {
+    res.header({
+      page: 'zero'
+    })
+    res.render('zero.ejs')
+  })
+
+  /**
+   *    A P I
+   */
+
+  app.post('/profile/activity', isLoggedIn, function (req, res) {
+    console.log('POST, new activity')
+    User.findById(req.session.passport.user, function (err, user) {
+      console.log('found ' + user.username + ' by id!')
+      user.addActivity(req.body.activityName)
+      console.log('activity list: ' + user.activities)
+    })
   })
 
 }

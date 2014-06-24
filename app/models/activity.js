@@ -2,11 +2,10 @@ var mongoose   = require('mongoose');
 
 var User       = require('./user');
 
-var activitySchema = mongoose.Schema({
+exports.schema = activitySchema = mongoose.Schema({
   name: {
     type     : String,
-    required : true,
-    match    : ['/\w{3}\w*/', 'Activity names must be at least 3 characters long.']
+    required : true
   },
 
   created: {

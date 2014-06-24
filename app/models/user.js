@@ -1,6 +1,8 @@
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt-nodejs')
 
+var Activity = require('./activity')
+
 var userSchema = mongoose.Schema({
   username : String,
 
@@ -31,10 +33,10 @@ var userSchema = mongoose.Schema({
     }
   },
 
-  // activities: {
-  //   type    : [Activity],
-  //   default : []
-  // }
+  activities: {
+    type    : [Activity.schema],
+    default : []
+  }
   
 })
 
@@ -44,6 +46,20 @@ userSchema.methods.generateHash = function (password) {
 
 userSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.auth.password)
+}
+
+userSchema.methods.addActivity = function (name) {
+  var newActivity = new Activity({
+    name: name
+  })
+  this.activities.push(newActivity)
+  this.save(function (err) {
+    if (err) {
+      console.log('unexpected error')
+    } else {
+      console.log('Activity added successfully. I think')
+    }
+  })
 }
 
 module.exports = mongoose.model('User', userSchema)

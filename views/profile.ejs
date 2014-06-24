@@ -21,21 +21,37 @@
     </div>
 
     <div class="row">
-
-        <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                <h3><span class="fa fa-user"></span> Hi there <%= user.username %> </h3>
 
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>password</strong>: <%= user.auth.password %><br>
-                        <strong>data</strong>: <%= user.stats %>
-                    </p>
+                <h3><span class="fa fa-user"></span> Hi there <%= user.username %> </h3>
+                <p>
+                    <strong>id</strong>: <%= user._id %><br>
+                    <strong>password</strong>: <%= user.auth.password %><br>
+                    <strong>data</strong>: <%= user.stats %>
+                    <strong>activities</strong>: <%= user.activities.length %>
+                </p>
 
             </div>
         </div>
 
+    </div>
+
+    <div class="row">
+        <div class"col-sm-6">
+            <div class="well">
+
+                <form action="activity" method="post">
+                    <div class="form-group">
+                        <label>Activity name</label>
+                        <input type="text" class="form-control" name="activityName">
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg">Create activity</button>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 </div>
