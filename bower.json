@@ -1,0 +1,11 @@
+{
+  "name": "tyve",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "~1.2.18"
+  },
+  "private": true,
+  "resolutions": {
+    "angular": "~1.2.18"
+  }
+}

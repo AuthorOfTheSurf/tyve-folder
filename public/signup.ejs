@@ -7,20 +7,19 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <style>
         body {
-            padding-top:80px;
+            padding-top: 80px;
         }
     </style>
 </head>
-<body>
+<body ng-app="tyveApp">
 <div class="container">
     <div class="col-sm-6 col-sm-offset-3">
 
         <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
         <!-- show any messages that come back with authentication -->
-        <% if (message.length > 0) { %>
-            <div class="alert alert-danger"><%= message %></div>
-        <% } %>
+        <div ng-if="messages" class="alert alert-danger"> {{ message }}
+        </div>
 
         <!-- LOGIN FORM -->
         <form action="/signup" method="post">
@@ -42,6 +41,7 @@
         <p>Or go <a href="/">home</a>.</p>
 
     </div>
+    <script src="https://code.angularjs.org/1.3.0-beta.13/angular.min.js"></script>
 </div>
 </body>
 </html>

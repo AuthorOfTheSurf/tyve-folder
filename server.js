@@ -12,12 +12,12 @@ mongoose.connect(dbconfig.url)
 require('./config/passport')(passport)
 
 app.configure(function () {
+  app.use(express.static(__dirname + '/public'))
+  app.use('/bower_components', express.static(__dirname + '/bower_components'))
   app.use(express.logger('dev'))
   app.use(express.cookieParser())
   app.use(express.json())
   app.use(express.urlencoded())
-
-  app.set('view engine', 'ejs')
 
   app.use(express.session({ secret: '123456' }))
   app.use(passport.initialize())
