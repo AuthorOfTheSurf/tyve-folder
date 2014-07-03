@@ -3,7 +3,7 @@ var User = require('./models/user')
 module.exports = function (app, passport) {
 
   app.get('/', function (req, res) {
-    res.render('index.html')
+    res.render('index')
   })
 
   app.post('/login', passport.authenticate('local-login', {
@@ -23,7 +23,7 @@ module.exports = function (app, passport) {
   })
 
   app.get('/profile/:username', isLoggedIn, function (req, res) {
-    res.render('profile.html', {
+    res.render('profile', {
       user: req.user
     })
   })
@@ -37,7 +37,7 @@ module.exports = function (app, passport) {
     res.header({
       page: 'zero'
     })
-    res.render('zero.html')
+    res.render('zero')
   })
 
   /**

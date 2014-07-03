@@ -9,12 +9,12 @@
         <div class="col-sm-6">
             <div class="well">
 
-                <h3><span class="fa fa-user"></span> Hi there <%= user.username %> </h3>
+                <h3><span class="fa fa-user"></span> Hi there {{ user.username }} </h3>
                 <p>
-                    <strong>id</strong>: <%= user._id %><br>
-                    <strong>password</strong>: <%= user.auth.password %><br>
-                    <strong>data</strong>: <%= user.stats %>
-                    <strong>activities</strong>: <%= user.activities.length %>
+                    <strong>id</strong>: {{ user._id }}<br>
+                    <strong>password</strong>: {{ user.auth.password }}<br>
+                    <strong>data</strong>: {{ user.stats }}
+                    <strong>activities</strong>: {{ user.activities.length }}
                 </p>
 
             </div>
@@ -38,5 +38,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>
