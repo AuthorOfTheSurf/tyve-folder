@@ -2,37 +2,21 @@
 
 var profile = angular.module('profile', ['ui.router'])
 
-profile.config(function($stateProvider, $urlRouterProvider, $state) {
+// console.log('in here!')
 
-  $urlRouterProvider.otherwise(function ($state) {
-    $state.go('main')
-  })
+profile.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
-  .state('main', {
-    url: '/profile/:username',
-    templateUrl: 'partials/profile.main.html',
-    controller: function ($scope) {
-      $scope.title = 'Tyve'
-      $scope.user = user
-    }
-  })
+    .state('main', {
+      url: '/',
+      templateUrl: 'partials/profile.main.html',
+      controller: function ($scope) {
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'partials/login.html',
-    controller: function ($scope) {
+      }
+    })
 
-    }
-  })
 
-  .state('signup', {
-    url: '/signup',
-    templateUrl: 'partials/signup.html',
-    controller: function ($scope) {
-
-    }
-  })
+  $urlRouterProvider.otherwise('/')
 
 })
